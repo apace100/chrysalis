@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IDI",
+    "ICI",
+    "IHI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+	"C": {
+      "item": "minecraft:crafting_table"
+    },
+	"H": {
+      "item": "minecraft:chest"
+    },
+	"D": {
+	  "item": "minecraft:diamond"
+	}
+  },
+  "result": {
+    "item": "chrysalis:assembly",
+    "count": 1
+  }
+}

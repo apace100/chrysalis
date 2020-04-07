@@ -1,0 +1,48 @@
+{
+  "itemGroup.chrysalis": "Chrysalis",
+  "block.chrysalis.gold_ore": "Gold Ore",
+  "block.chrysalis.iron_ore": "Iron Ore",
+  
+  "block.chrysalis.assembly": "Assembly",
+  "container.assembly": "Assembly",
+  
+  "block.chrysalis.hopper_duct": "Hopper Duct",
+  "block.chrysalis.item_grate": "Item Grate",
+  
+  "item.minecraft.potion.effect.death_teleport": "Potion of the Fallen",
+  "item.minecraft.splash_potion.effect.death_teleport": "Splash Potion of the Fallen",
+  "item.minecraft.lingering_potion.effect.death_teleport": "Lingering Potion of the Fallen",
+  "item.minecraft.tipped_arrow.effect.death_teleport": "Arrow of the Fallen",
+  
+  "item.minecraft.potion.effect.crit_damage": "Potion of Bloodletting",
+  "item.minecraft.potion.effect.long_crit_damage": "Potion of Bloodletting",
+  "item.minecraft.potion.effect.strong_crit_damage": "Potion of Bloodletting",
+  "item.minecraft.splash_potion.effect.crit_damage": "Splash Potion of Bloodletting",
+  "item.minecraft.splash_potion.effect.long_crit_damage": "Splash Potion of Bloodletting",
+  "item.minecraft.splash_potion.effect.strong_crit_damage": "Splash Potion of Bloodletting",
+  "item.minecraft.lingering_potion.effect.crit_damage": "Lingering Potion of Bloodletting",
+  "item.minecraft.lingering_potion.effect.long_crit_damage": "Lingering Potion of Bloodletting",
+  "item.minecraft.lingering_potion.effect.strong_crit_damage": "Lingering Potion of Bloodletting",
+  "item.minecraft.tipped_arrow.effect.crit_damage": "Arrow of Bloodletting",
+  
+  "item.minecraft.potion.effect.crit_chance": "Potion of Incision",
+  "item.minecraft.potion.effect.long_crit_chance": "Potion of Incision",
+  "item.minecraft.potion.effect.strong_crit_chance": "Potion of Incision",
+  "item.minecraft.splash_potion.effect.crit_chance": "Splash Potion of Incision",
+  "item.minecraft.splash_potion.effect.long_crit_chance": "Splash Potion of Incision",
+  "item.minecraft.splash_potion.effect.strong_crit_chance": "Splash Potion of Incision",
+  "item.minecraft.lingering_potion.effect.crit_chance": "Lingering Potion of Incision",
+  "item.minecraft.lingering_potion.effect.long_crit_chance": "Lingering Potion of Incision",
+  "item.minecraft.lingering_potion.effect.strong_crit_chance": "Lingering Potion of Incision",
+  "item.minecraft.tipped_arrow.effect.crit_chance": "Arrow of Incision",
+  
+  "item.chrysalis.blueprint": "Blueprint",
+  "item.chrysalis.written_blueprint": "Blueprint",
+  
+  "effect.chrysalis.death_teleport": "Death Wish",
+  "effect.chrysalis.crit_damage": "Bloodletting",
+  "effect.chrysalis.crit_chance": "Incision",
+  
+  "attribute.name.generic.crit_chance": "Critical Strike Chance",
+  "attribute.name.generic.crit_damage": "Critical Strike Damage"
+}

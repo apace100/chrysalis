@@ -1,0 +1,52 @@
+{
+    "multipart": [
+        {   "when": { "north": true },
+            "apply": { "model": "chrysalis:block/hopper_duct_side" }
+        },
+        {   "when": { "east": true },
+            "apply": { "model": "chrysalis:block/hopper_duct_side", "y": 90, "uvlock": true }
+        },
+        {   "when": { "south": true },
+            "apply": { "model": "chrysalis:block/hopper_duct_side", "y": 180, "uvlock": true }
+        },
+        {   "when": { "west": true },
+            "apply": { "model": "chrysalis:block/hopper_duct_side", "y": 270, "uvlock": true }
+        },
+        {   "when": { "up": true },
+            "apply": { "model": "chrysalis:block/hopper_duct_side", "x": 270, "uvlock": true }
+        },
+        {   "when": { "down": true },
+            "apply": { "model": "chrysalis:block/hopper_duct_side", "x": 90, "uvlock": true }
+        },
+		{   "when": { "north": false },
+            "apply": [
+                { "model": "chrysalis:block/hopper_duct_noside_north" }
+            ]
+        },
+		{   "when": { "east": false },
+            "apply": [
+                { "model": "chrysalis:block/hopper_duct_noside_east" }
+            ]
+        },
+		{   "when": { "south": false },
+            "apply": [
+                { "model": "chrysalis:block/hopper_duct_noside_south" }
+            ]
+        },
+		{   "when": { "west": false },
+            "apply": [
+                { "model": "chrysalis:block/hopper_duct_noside_west" }
+            ]
+        },
+		{   "when": { "up": false },
+            "apply": [
+                { "model": "chrysalis:block/hopper_duct_noside_up" }
+            ]
+        },
+		{   "when": { "down": false },
+            "apply": [
+                { "model": "chrysalis:block/hopper_duct_noside_down" }
+            ]
+        }
+    ]
+}

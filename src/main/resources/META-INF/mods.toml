@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+[[mods]]
+	modId="chrysalis"
+	version="${file.jarVersion}"
+	displayName="Chrysalis"
+	authors="Apace"
+	description='''Chrysalis changes upgrades the Minecraft experience while still keeping it the same.'''
