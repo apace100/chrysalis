@@ -3,6 +3,7 @@ package chrysalis.block.assembly;
 import chrysalis.Chrysalis;
 import chrysalis.block.Blocks;
 import chrysalis.item.Items;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingInventory;
@@ -181,11 +182,40 @@ public class AssemblyTileEntity extends TileEntity implements INamedContainerPro
 		IItemHandler input = getInputItemHandler();
 		for(ItemStack in : craftingInput) {
 			int remaining = in.getCount();
-			for(int i = 0; i < input.getSlots() && remaining > 0; i++) {
-				ItemStack inputStack = input.getStackInSlot(i);
-				if(ItemHandlerHelper.canItemStacksStack(in, inputStack)) {
-					ItemStack extractStack = input.extractItem(i, remaining, false);
-					remaining -= extractStack.getCount();
+			if(in.hasContainerItem()) {
+				for(int i = 0; i < input.getSlots() && remaining > 0; i++) {
+					ItemStack inputStack = input.getStackInSlot(i);
+					if(ItemHandlerHelper.canItemStacksStack(in, inputStack)) {
+						ItemStack extractStack = input.extractItem(i, remaining, false);
+						remaining -= extractStack.getCount();
+						ItemStack container = extractStack.getContainerItem();
+						for(int di = 0; di < 4; di++) {
+							Direction d = Direction.byHorizontalIndex(di);
+							TileEntity te = world.getTileEntity(pos.offset(d));
+							if(te != null) {
+								IItemHandler ih = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, d.getOpposite()).orElse(null);
+								if(ih != null) {
+									ItemStack remainder = ItemHandlerHelper.insertItemStacked(ih, container, false);
+									container = remainder;
+								}
+							}
+							if(container == null || container.isEmpty()) {
+								break;
+							}
+						}
+						if(container != null && !container.isEmpty()) {
+							ItemEntity ie = new ItemEntity(world, pos.getX() + 0.5D, pos.getY() + 1.1D, pos.getZ() + 0.5D, container);
+							world.addEntity(ie);
+						}
+					}
+				}
+			} else {
+				for(int i = 0; i < input.getSlots() && remaining > 0; i++) {
+					ItemStack inputStack = input.getStackInSlot(i);
+					if(ItemHandlerHelper.canItemStacksStack(in, inputStack)) {
+						ItemStack extractStack = input.extractItem(i, remaining, false);
+						remaining -= extractStack.getCount();
+					}
 				}
 			}
 		}
