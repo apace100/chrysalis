@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "chrysalis:block/fan_side",
+        "down": "chrysalis:block/fan_bottom",
+        "up": "chrysalis:block/fan_top",
+        "north": "chrysalis:block/fan_side",
+        "east": "chrysalis:block/fan_side",
+        "south": "chrysalis:block/fan_side",
+        "west": "chrysalis:block/fan_side"
+    }
+}

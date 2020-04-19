@@ -2,18 +2,15 @@
   "itemGroup.chrysalis": "Chrysalis",
   "block.chrysalis.gold_ore": "Gold Ore",
   "block.chrysalis.iron_ore": "Iron Ore",
-  
   "block.chrysalis.assembly": "Assembly",
   "container.assembly": "Assembly",
-  
   "block.chrysalis.hopper_duct": "Hopper Duct",
   "block.chrysalis.item_grate": "Item Grate",
-  
+  "block.chrysalis.fan": "Fan",
   "item.minecraft.potion.effect.death_teleport": "Potion of the Fallen",
   "item.minecraft.splash_potion.effect.death_teleport": "Splash Potion of the Fallen",
   "item.minecraft.lingering_potion.effect.death_teleport": "Lingering Potion of the Fallen",
   "item.minecraft.tipped_arrow.effect.death_teleport": "Arrow of the Fallen",
-  
   "item.minecraft.potion.effect.crit_damage": "Potion of Bloodletting",
   "item.minecraft.potion.effect.long_crit_damage": "Potion of Bloodletting",
   "item.minecraft.potion.effect.strong_crit_damage": "Potion of Bloodletting",

@@ -2,6 +2,7 @@ package chrysalis.block;
 
 import chrysalis.Chrysalis;
 import chrysalis.block.assembly.AssemblyBlock;
+import chrysalis.block.fan.FanBlock;
 import chrysalis.block.hopperDuct.HopperDuctBlock;
 import chrysalis.block.itemGrate.ItemGrateBlock;
 import net.minecraft.block.Block;
@@ -20,26 +21,34 @@ public class Blocks {
 	
 	@ObjectHolder(Chrysalis.MODID + ":gold_ore")
 	public static Block GOLD_ORE;
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":assembly")
 	public static Block ASSEMBLY;
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":hopper_duct")
 	public static Block HOPPER_DUCT;
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":item_grate")
 	public static Block ITEM_GRATE;
-	
+
+	@ObjectHolder(Chrysalis.MODID + ":fan")
+	public static Block FAN;
+
 	public static class Tags {
-		public static final Tag<Block> HOPPER_DUCTS = new BlockTags.Wrapper(new ResourceLocation(Chrysalis.MODID, "hopper_ducts"));
+
+		public static final Tag<Block> HOPPER_DUCTS = new BlockTags.Wrapper(
+				new ResourceLocation(Chrysalis.MODID, "hopper_ducts"));
 	}
-	
+
 	public static void register(IForgeRegistry<Block> registry) {
-		register(registry, "gold_ore", new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
-		register(registry, "iron_ore", new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		register(registry, "gold_ore",
+				new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
+		register(registry, "iron_ore",
+				new OreBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F)));
 		register(registry, "assembly", new AssemblyBlock());
 		register(registry, "hopper_duct", new HopperDuctBlock());
 		register(registry, "item_grate", new ItemGrateBlock());
+		register(registry, "fan", new FanBlock());
 	}
 	
 	private static void register(IForgeRegistry<Block> registry, String regName, Block block) {

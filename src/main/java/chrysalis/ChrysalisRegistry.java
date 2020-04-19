@@ -3,6 +3,7 @@ package chrysalis;
 import chrysalis.block.Blocks;
 import chrysalis.block.assembly.AssemblyContainer;
 import chrysalis.block.assembly.AssemblyTileEntity;
+import chrysalis.block.fan.FanTileEntity;
 import chrysalis.block.hopperDuct.HopperDuctTileEntity;
 import chrysalis.block.itemGrate.ItemGrateTileEntity;
 import chrysalis.item.Items;
@@ -46,7 +47,11 @@ public class ChrysalisRegistry {
     	IForgeRegistry<TileEntityType<?>> reg = event.getRegistry();
     	reg.register(TileEntityType.Builder.create(AssemblyTileEntity::new, Blocks.ASSEMBLY).build(null).setRegistryName("assembly"));
     	reg.register(TileEntityType.Builder.create(HopperDuctTileEntity::new, Blocks.HOPPER_DUCT).build(null).setRegistryName("hopper_duct"));
-    	reg.register(TileEntityType.Builder.create(ItemGrateTileEntity::new, Blocks.ITEM_GRATE).build(null).setRegistryName("item_grate"));
+      reg.register(
+          TileEntityType.Builder.create(ItemGrateTileEntity::new, Blocks.ITEM_GRATE).build(null)
+              .setRegistryName("item_grate"));
+      reg.register(TileEntityType.Builder.create(FanTileEntity::new, Blocks.FAN).build(null)
+          .setRegistryName("fan"));
     }
     
     @SubscribeEvent
