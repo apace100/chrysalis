@@ -3,10 +3,13 @@ package chrysalis.block.fan;
 import chrysalis.Chrysalis;
 import java.util.List;
 import net.minecraft.entity.Entity;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class FanTileEntity extends TileEntity implements ITickableTileEntity {
@@ -14,36 +17,70 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
   @ObjectHolder(Chrysalis.MODID + ":fan")
   public static TileEntityType<FanTileEntity> TYPE;
 
+  private static final double elevationMaxDistance = 15;
+  private double elevationDistance = elevationMaxDistance;
+  private Direction fanDirection;
+
   public FanTileEntity() {
     super(TYPE);
-    System.out.println("craete empty");
   }
-
 
   @Override
   public void tick() {
     if (world != null) {
-      double x = pos.getX();
-      double y = pos.getY() + 1.0d;
-      double z = pos.getZ();
-      double elevationHeigth = world.getStrongPower(pos);
-      for (int i = 1; i <= elevationHeigth; i++) {
-        if (!world.isAirBlock(pos.add(0, i, 0))) {
-          elevationHeigth = i;
-          break;
-        }
-      }
-      AxisAlignedBB scanAbove = new AxisAlignedBB(x, y, z, x + 1.0, y + elevationHeigth, z + 1.0);
-      List<Entity> list = world.getEntitiesWithinAABB(Entity.class, scanAbove);
+      fanDirection = world.getBlockState(pos).get(BlockStateProperties.FACING);
+      elevationDistance = getActuallElevationHeigth();
+      moveEntities();
+    }
+  }
 
-      for (Entity entity : list) {
+  private void moveEntities() {
+    AxisAlignedBB scan = new AxisAlignedBB(pos,
+        pos.offset(fanDirection, (int) elevationDistance - 1).add(1.0, 1.0, 1.0));
+    List<Entity> list = world.getEntitiesWithinAABB(Entity.class, scan);
+    for (Entity entity : list) {
+      addMotion(entity);
+      entity.fallDistance = 0;
+    }
+  }
 
-        if (!entity.isShiftKeyDown()) {
+  private void addMotion(Entity entity) {
+    double factor = 0.35;
+    if (entity.isShiftKeyDown()) {
+      fanDirection = fanDirection.getOpposite();
+    }
+    switch (fanDirection) {
+      case DOWN:
+        entity.setMotion(entity.getMotion().x, factor * -1, entity.getMotion().z);
+        break;
+      case UP:
+        entity.setMotion(entity.getMotion().x, factor, entity.getMotion().z);
+        break;
+      case NORTH:
+        entity.setMotion(entity.getMotion().x, entity.getMotion().y, factor * -1);
+        break;
+      case SOUTH:
+        entity.setMotion(entity.getMotion().x, entity.getMotion().y, factor);
+        break;
+      case WEST:
+        entity.setMotion(factor * -1, entity.getMotion().y, entity.getMotion().z);
+        break;
+      case EAST:
+        entity.setMotion(factor, entity.getMotion().y, entity.getMotion().z);
+        break;
+      default:
+        break;
+    }
+  }
 
-          entity.setMotion(entity.getMotion().x, 0.35, entity.getMotion().z);
-        }
-        entity.fallDistance = 0;
+  private double getActuallElevationHeigth() {
+    for (int i = 1; i <= elevationMaxDistance && i <= world.getStrongPower(pos); i++) {
+      BlockPos posToCheck = pos.offset(fanDirection, i);
+      if (world.getBlockState(posToCheck)
+          .isSolidSide(world, posToCheck, fanDirection.getOpposite())) {
+        return i;
       }
     }
+    return elevationMaxDistance;
   }
 }
