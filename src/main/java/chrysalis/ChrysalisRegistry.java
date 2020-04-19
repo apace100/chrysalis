@@ -1,10 +1,10 @@
 package chrysalis;
 
 import chrysalis.block.Blocks;
-import chrysalis.block.HopperDuctTileEntity;
-import chrysalis.block.ItemGrateTileEntity;
 import chrysalis.block.assembly.AssemblyContainer;
 import chrysalis.block.assembly.AssemblyTileEntity;
+import chrysalis.block.hopperDuct.HopperDuctTileEntity;
+import chrysalis.block.itemGrate.ItemGrateTileEntity;
 import chrysalis.item.Items;
 import chrysalis.potion.Potions;
 import net.minecraft.block.Block;

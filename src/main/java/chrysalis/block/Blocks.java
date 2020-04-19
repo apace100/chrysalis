@@ -2,6 +2,8 @@ package chrysalis.block;
 
 import chrysalis.Chrysalis;
 import chrysalis.block.assembly.AssemblyBlock;
+import chrysalis.block.hopperDuct.HopperDuctBlock;
+import chrysalis.block.itemGrate.ItemGrateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.material.Material;
