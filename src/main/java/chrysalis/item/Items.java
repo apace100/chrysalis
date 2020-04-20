@@ -51,7 +51,8 @@ public class Items {
 		addBlockItem(registry, Blocks.HOPPER_DUCT, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.ITEM_GRATE, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.FAN, Chrysalis.ITEM_GROUP);
-
+		addBlockItem(registry, Blocks.PRESS, Chrysalis.ITEM_GROUP);
+		
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {

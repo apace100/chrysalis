@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LOL",
+    "O O",
+    "LOL"
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:storage_blocks/lapis"
+    },
+	"O": {
+      "tag": "forge:obsidian"
+    }
+  },
+  "result": {
+    "item": "chrysalis:press",
+    "count": 1
+  }
+}

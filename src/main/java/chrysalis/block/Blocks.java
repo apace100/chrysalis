@@ -33,6 +33,9 @@ public class Blocks {
 
 	@ObjectHolder(Chrysalis.MODID + ":fan")
 	public static Block FAN;
+	
+	@ObjectHolder(Chrysalis.MODID + ":press")
+	public static Block PRESS;
 
 	public static class Tags {
 
@@ -49,6 +52,7 @@ public class Blocks {
 		register(registry, "hopper_duct", new HopperDuctBlock());
 		register(registry, "item_grate", new ItemGrateBlock());
 		register(registry, "fan", new FanBlock());
+		register(registry, "press", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F)));
 	}
 	
 	private static void register(IForgeRegistry<Block> registry, String regName, Block block) {

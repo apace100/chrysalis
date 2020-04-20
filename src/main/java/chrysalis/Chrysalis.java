@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import chrysalis.ai.AIExtender;
 import chrysalis.block.assembly.BlueprintCreation;
+import chrysalis.block.press.Press;
 import chrysalis.item.Items;
 import chrysalis.potion.Potions;
 import net.minecraft.item.ItemGroup;
@@ -47,5 +48,6 @@ public class Chrysalis {
         MinecraftForge.EVENT_BUS.register(AttributeEventHandler.class);
         MinecraftForge.EVENT_BUS.register(new BlueprintCreation());
         MinecraftForge.EVENT_BUS.register(new AIExtender());
+        MinecraftForge.EVENT_BUS.register(new Press());
     }
 }
