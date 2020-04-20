@@ -27,7 +27,6 @@ public class FanBlock extends Block {
       @Nullable LivingEntity placer, ItemStack stack) {
     if (placer != null) {
       Direction facing = getFacingFromEntity(pos, placer);
-      System.out.println(facing);
       worldIn.setBlockState(pos, state.with(
           BlockStateProperties.FACING, facing), 2);
     }

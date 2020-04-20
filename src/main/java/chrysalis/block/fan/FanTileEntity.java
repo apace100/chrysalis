@@ -17,8 +17,7 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
   @ObjectHolder(Chrysalis.MODID + ":fan")
   public static TileEntityType<FanTileEntity> TYPE;
 
-  private static final double elevationMaxDistance = 15;
-  private double elevationDistance = elevationMaxDistance;
+  private double elevationDistance = 0;
   private Direction fanDirection;
 
   public FanTileEntity() {
@@ -74,13 +73,14 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
   }
 
   private double getActuallElevationHeigth() {
-    for (int i = 1; i <= elevationMaxDistance && i <= world.getStrongPower(pos); i++) {
+    int redstonePower = world.getRedstonePowerFromNeighbors(pos);
+    for (int i = 1; i <= redstonePower; i++) {
       BlockPos posToCheck = pos.offset(fanDirection, i);
       if (world.getBlockState(posToCheck)
           .isSolidSide(world, posToCheck, fanDirection.getOpposite())) {
         return i;
       }
     }
-    return elevationMaxDistance;
+    return redstonePower;
   }
 }
