@@ -1,4 +1,4 @@
-package chrysalis.block.itemGrate;
+package chrysalis.block.item_grate;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

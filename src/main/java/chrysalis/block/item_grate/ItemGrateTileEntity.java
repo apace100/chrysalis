@@ -1,4 +1,4 @@
-package chrysalis.block.itemGrate;
+package chrysalis.block.item_grate;
 
 import chrysalis.Chrysalis;
 import java.util.List;

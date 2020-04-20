@@ -1,4 +1,4 @@
-package chrysalis.block.hopperDuct;
+package chrysalis.block.hopper_duct;
 
 import chrysalis.Chrysalis;
 import chrysalis.block.Blocks;
