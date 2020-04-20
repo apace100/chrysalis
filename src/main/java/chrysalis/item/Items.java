@@ -1,9 +1,8 @@
 package chrysalis.item;
 
-import java.util.List;
-
 import chrysalis.Chrysalis;
 import chrysalis.block.Blocks;
+import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.ItemStackHelper;
@@ -51,15 +50,17 @@ public class Items {
 		addBlockItem(registry, Blocks.ASSEMBLY, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.HOPPER_DUCT, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.ITEM_GRATE, Chrysalis.ITEM_GROUP);
-		
+		addBlockItem(registry, Blocks.FAN, Chrysalis.ITEM_GROUP);
+
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {
 
 			@Override
-			public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+			public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip,
+					ITooltipFlag flagIn) {
 				CompoundNBT blueprintNBT = stack.getChildTag("Blueprint");
-				if(blueprintNBT != null) {
+				if (blueprintNBT != null) {
 					ItemStack output = ItemStack.read(blueprintNBT.getCompound("Output"));
 					StringTextComponent outputTooltip = new StringTextComponent(" (" + output.getCount() + "x ");
 					outputTooltip.appendSibling(output.getDisplayName()).appendText(")");

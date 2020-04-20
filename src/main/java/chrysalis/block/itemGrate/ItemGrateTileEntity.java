@@ -1,8 +1,7 @@
-package chrysalis.block;
-
-import java.util.List;
+package chrysalis.block.itemGrate;
 
 import chrysalis.Chrysalis;
+import java.util.List;
 import net.minecraft.entity.item.ItemFrameEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;

@@ -1,11 +1,12 @@
-package chrysalis.block;
+package chrysalis.block.itemGrate;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
-//import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.world.IBlockReader;
+
+//import net.minecraft.util.BlockRenderLayer;
 
 public class ItemGrateBlock extends Block {
 	

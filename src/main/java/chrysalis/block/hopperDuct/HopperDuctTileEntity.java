@@ -1,14 +1,13 @@
-package chrysalis.block;
+package chrysalis.block.hopperDuct;
 
+import chrysalis.Chrysalis;
+import chrysalis.block.Blocks;
+import chrysalis.block.assembly.AssemblyTileEntity;
+import chrysalis.utils.Utils;
+import com.google.common.collect.ImmutableList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-
-import com.google.common.collect.ImmutableList;
-
-import chrysalis.Chrysalis;
-import chrysalis.block.assembly.AssemblyTileEntity;
-import chrysalis.utils.Utils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.HopperTileEntity;
 import net.minecraft.tileentity.TileEntity;
