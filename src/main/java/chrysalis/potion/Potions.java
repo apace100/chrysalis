@@ -47,9 +47,7 @@ public class Potions {
 	public static void registerEffects(IForgeRegistry<Effect> registry) {
 		registry.register(new EffectDeathTeleport().setRegistryName("death_teleport"));
 		registry.register(new EffectAttribute(EffectType.BENEFICIAL, 0xB58D1F).addAttributesModifier(Attributes.CRIT_CHANCE, "5BDD6A9B-9107-447B-9AD0-7538D22CB44C", 0.4, Operation.ADDITION).setRegistryName("crit_chance"));
-//		registry.register(new EffectCritChance(EffectType.BENEFICIAL, 0xB58D1F).setRegistryName("crit_chance"));
 		registry.register(new EffectAttribute(EffectType.BENEFICIAL, 0x1F8FB8).addAttributesModifier(Attributes.CRIT_DAMAGE, "DC4D3C87-6EF3-489A-82E7-2D1EC04F5176", 0.5, Operation.ADDITION).setRegistryName("crit_damage"));
-//		registry.register(new EffectCritDamage(EffectType.BENEFICIAL, 0x1F8FB8).setRegistryName("crit_damage"));
 	}
 	
 	public static void registerPotions(IForgeRegistry<Potion> registry) {
