@@ -7,6 +7,7 @@ import chrysalis.ai.AIExtender;
 import chrysalis.block.assembly.BlueprintCreation;
 import chrysalis.block.press.Press;
 import chrysalis.item.Items;
+import chrysalis.network.ModPacketHandler;
 import chrysalis.potion.Potions;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -44,6 +45,7 @@ public class Chrysalis {
     private void setup(final FMLCommonSetupEvent event) {
         Potions.registerRecipes();
         Attributes.registerAll();
+        ModPacketHandler.registerMessages();
         MinecraftForge.EVENT_BUS.register(Attributes.class);
         MinecraftForge.EVENT_BUS.register(AttributeEventHandler.class);
         MinecraftForge.EVENT_BUS.register(new BlueprintCreation());
