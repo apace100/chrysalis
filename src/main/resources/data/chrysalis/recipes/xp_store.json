@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "G G",
+    "OOO"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "O": {
+      "tag": "forge:obsidian"
+    }
+  },
+  "result": {
+    "item": "chrysalis:xp_store"
+  }
+}

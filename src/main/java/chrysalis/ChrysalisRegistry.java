@@ -6,6 +6,7 @@ import chrysalis.block.assembly.AssemblyTileEntity;
 import chrysalis.block.fan.FanTileEntity;
 import chrysalis.block.hopper_duct.HopperDuctTileEntity;
 import chrysalis.block.item_grate.ItemGrateTileEntity;
+import chrysalis.block.xp_store.XPStoreTileEntity;
 import chrysalis.item.Items;
 import chrysalis.potion.Potions;
 import net.minecraft.block.Block;
@@ -52,6 +53,7 @@ public class ChrysalisRegistry {
               .setRegistryName("item_grate"));
       reg.register(TileEntityType.Builder.create(FanTileEntity::new, Blocks.FAN).build(null)
           .setRegistryName("fan"));
+      reg.register(TileEntityType.Builder.create(XPStoreTileEntity::new, Blocks.XP_STORE).build(null).setRegistryName("xp_store"));
     }
     
     @SubscribeEvent

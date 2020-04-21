@@ -1,0 +1,41 @@
+{
+    "multipart": [
+        {   "apply": { "model": "chrysalis:block/xp_store_base" }},
+        {   "when": { "level": 1 },
+            "apply": { "model": "chrysalis:block/xp_store_level_1", "uvlock": true }
+        },
+        {   "when": { "level": 2 },
+            "apply": { "model": "chrysalis:block/xp_store_level_2", "uvlock": true }
+        },
+        {   "when": { "level": 3 },
+            "apply": { "model": "chrysalis:block/xp_store_level_3", "uvlock": true }
+        },
+        {   "when": { "level": 4 },
+            "apply": { "model": "chrysalis:block/xp_store_level_4", "uvlock": true }
+        },
+        {   "when": { "level": 5 },
+            "apply": { "model": "chrysalis:block/xp_store_level_5", "uvlock": true }
+        },
+        {   "when": { "level": 6 },
+            "apply": { "model": "chrysalis:block/xp_store_level_6", "uvlock": true }
+        },
+        {   "when": { "level": 7 },
+            "apply": { "model": "chrysalis:block/xp_store_level_7", "uvlock": true }
+        },
+        {   "when": { "level": 8 },
+            "apply": { "model": "chrysalis:block/xp_store_level_8", "uvlock": true }
+        },
+        {   "when": { "level": 9 },
+            "apply": { "model": "chrysalis:block/xp_store_level_9", "uvlock": true }
+        },
+        {   "when": { "level": 10 },
+            "apply": { "model": "chrysalis:block/xp_store_level_10", "uvlock": true }
+        },
+        {   "when": { "level": 11 },
+            "apply": { "model": "chrysalis:block/xp_store_level_11", "uvlock": true }
+        },
+        {   "when": { "level": 12 },
+            "apply": { "model": "chrysalis:block/xp_store_level_12", "uvlock": true }
+        }
+    ]
+}
