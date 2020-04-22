@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " L ",
+    "LEL",
+    " L "
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:gems/lapis"
+    },
+    "E": {
+      "tag": "forge:gems/emerald"
+    }
+  },
+  "result": {
+    "item": "chrysalis:xp_seed"
+  }
+}

@@ -10,6 +10,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
@@ -80,5 +81,7 @@ public class Items {
 				super.addInformation(stack, worldIn, tooltip, flagIn);
 			}
 		});
+		
+		addItem(registry, "xp_seed", new XPSeedItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).food(XPSeedItem.FOOD)));
 	}
 }

@@ -39,6 +39,8 @@
   "item.chrysalis.blueprint": "Blueprint",
   "item.chrysalis.written_blueprint": "Blueprint",
   
+  "item.chrysalis.xp_seed": "Seed of Wisdom",
+  
   "effect.chrysalis.death_teleport": "Death Wish",
   "effect.chrysalis.crit_damage": "Bloodletting",
   "effect.chrysalis.crit_chance": "Incision",
