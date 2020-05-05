@@ -10,7 +10,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
@@ -21,20 +20,24 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class Items {
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":chrysalis")
 	public static Item CHRYSALIS;
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":blueprint")
 	public static Item BLUEPRINT;
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":written_blueprint")
 	public static Item WRITTEN_BLUEPRINT;
-	
+
+	@ObjectHolder(Chrysalis.MODID + ":acid_bottle")
+	public static Item ACID_BOTTLE;
+
 	private static void addBlockItem(IForgeRegistry<Item> registry, Block block, ItemGroup group) {
 		Item item = null;
-		if(group != null) {
-			item = new BlockItem(block, new Item.Properties().group(group)).setRegistryName(block.getRegistryName());
+		if (group != null) {
+			item = new BlockItem(block, new Item.Properties().group(group))
+					.setRegistryName(block.getRegistryName());
 		} else {
 			item = new BlockItem(block, new Item.Properties()).setRegistryName(block.getRegistryName());
 		}
@@ -54,7 +57,11 @@ public class Items {
 		addBlockItem(registry, Blocks.FAN, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.PRESS, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.XP_STORE, Chrysalis.ITEM_GROUP);
-		
+
+		addItem(registry, "xp_seed",
+				new XPSeedItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).food(XPSeedItem.FOOD)));
+		addItem(registry, "acid_bottle",
+				new AcidBottle(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(1)));
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {
@@ -68,7 +75,7 @@ public class Items {
 					StringTextComponent outputTooltip = new StringTextComponent(" (" + output.getCount() + "x ");
 					outputTooltip.appendSibling(output.getDisplayName()).appendText(")");
 					tooltip.get(0).appendSibling(outputTooltip);
-					
+
 					NonNullList<ItemStack> inputs = NonNullList.withSize(blueprintNBT.getInt("InputCount"), ItemStack.EMPTY);
 					ItemStackHelper.loadAllItems(blueprintNBT.getCompound("Input"), inputs);
 					for(ItemStack input : inputs) {
@@ -81,7 +88,5 @@ public class Items {
 				super.addInformation(stack, worldIn, tooltip, flagIn);
 			}
 		});
-		
-		addItem(registry, "xp_seed", new XPSeedItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).food(XPSeedItem.FOOD)));
 	}
 }

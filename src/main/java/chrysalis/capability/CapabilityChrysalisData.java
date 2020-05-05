@@ -3,7 +3,6 @@ package chrysalis.capability;
 import chrysalis.Chrysalis;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -51,15 +50,15 @@ public class CapabilityChrysalisData {
 	
 	@SubscribeEvent
 	public static void attachCapabilityEntity(AttachCapabilitiesEvent<Entity> event) {
-		if(event.getObject() instanceof PlayerEntity) {
+		if (event.getObject() instanceof LivingEntity) {
 			event.addCapability(LOCATION, new ICapabilitySerializable<INBT>() {
 				private IChrysalisData instance = new ChrysalisData();
 
 				@SuppressWarnings("unchecked")
 				@Override
 				public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-					if(cap == CAPABILITY) {
-						return (LazyOptional<T>)LazyOptional.of(() -> instance);
+					if (cap == CAPABILITY) {
+						return (LazyOptional<T>) LazyOptional.of(() -> instance);
 					}
 					return LazyOptional.empty();
 				}

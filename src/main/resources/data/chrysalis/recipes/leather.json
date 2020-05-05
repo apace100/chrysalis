@@ -10,11 +10,11 @@
       "item": "minecraft:rotten_flesh"
     },
     "P": {
-      "item": "minecraft:redstone"
+      "item": "chrysalis:acid_bottle"
     }
   },
   "result": {
-    "item": "minecraft:fan",
+    "item": "minecraft:leather",
     "count": 4
   }
 }
