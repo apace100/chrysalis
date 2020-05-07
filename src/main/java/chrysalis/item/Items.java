@@ -10,7 +10,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
@@ -54,7 +53,8 @@ public class Items {
 		addBlockItem(registry, Blocks.FAN, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.PRESS, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.XP_STORE, Chrysalis.ITEM_GROUP);
-		
+		addBlockItem(registry, Blocks.COLORED_REDSTONE_BASE, Chrysalis.ITEM_GROUP);
+
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {

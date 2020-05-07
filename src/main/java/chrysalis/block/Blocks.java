@@ -2,6 +2,7 @@ package chrysalis.block;
 
 import chrysalis.Chrysalis;
 import chrysalis.block.assembly.AssemblyBlock;
+import chrysalis.block.coloredRedstone.ColoredRedstoneBase;
 import chrysalis.block.fan.FanBlock;
 import chrysalis.block.hopper_duct.HopperDuctBlock;
 import chrysalis.block.item_grate.ItemGrateBlock;
@@ -16,12 +17,15 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class Blocks {
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":iron_ore")
 	public static Block IRON_ORE;
-	
+
 	@ObjectHolder(Chrysalis.MODID + ":gold_ore")
 	public static Block GOLD_ORE;
+
+	@ObjectHolder(Chrysalis.MODID + ":colored_redstone_base")
+	public static Block COLORED_REDSTONE_BASE;
 
 	@ObjectHolder(Chrysalis.MODID + ":assembly")
 	public static Block ASSEMBLY;
@@ -41,6 +45,7 @@ public class Blocks {
 	@ObjectHolder(Chrysalis.MODID + ":xp_store")
 	public static Block XP_STORE;
 
+
 	public static class Tags {
 
 		public static final Tag<Block> HOPPER_DUCTS = new BlockTags.Wrapper(
@@ -56,8 +61,10 @@ public class Blocks {
 		register(registry, "hopper_duct", new HopperDuctBlock());
 		register(registry, "item_grate", new ItemGrateBlock());
 		register(registry, "fan", new FanBlock());
-		register(registry, "press", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F)));
+		register(registry, "press",
+				new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F)));
 		register(registry, "xp_store", new XPStoreBlock());
+		register(registry, "colored_redstone_base", new ColoredRedstoneBase());
 	}
 	
 	private static void register(IForgeRegistry<Block> registry, String regName, Block block) {
