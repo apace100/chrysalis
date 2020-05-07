@@ -2,6 +2,10 @@ package chrysalis.item;
 
 import chrysalis.Chrysalis;
 import chrysalis.block.Blocks;
+import chrysalis.item.slingShot.SlingShot;
+import chrysalis.item.slingShot.ammo.SlingShotStone;
+import chrysalis.item.slingShot.SlingShot;
+import chrysalis.item.slingShot.ammo.SlingShotStone;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -32,6 +36,12 @@ public class Items {
 
 	@ObjectHolder(Chrysalis.MODID + ":acid_bottle")
 	public static Item ACID_BOTTLE;
+
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot")
+	public static Item SLING_SHOT;
+
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot_stone")
+	public static Item SLING_SHOT_STONE;
 
 	private static void addBlockItem(IForgeRegistry<Item> registry, Block block, ItemGroup group) {
 		Item item = null;
@@ -66,6 +76,11 @@ public class Items {
 				new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
+		addItem(registry, "sling_shot",
+				new SlingShot(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(1)));
+		addItem(registry, "sling_shot_stone",
+				new SlingShotStone(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
+
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {
 
 			@Override
