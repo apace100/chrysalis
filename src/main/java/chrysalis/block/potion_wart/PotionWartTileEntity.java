@@ -4,10 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import chrysalis.Chrysalis;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.Effect;
@@ -26,6 +26,8 @@ public class PotionWartTileEntity extends TileEntity {
 	private static final float DURATION_MULTIPLIER = 0.05F;
 	private List<WartEffect> effects;
 	
+	private Modifier modifier;
+	
 	public PotionWartTileEntity() {
 		this(TYPE);
 	}
@@ -33,6 +35,7 @@ public class PotionWartTileEntity extends TileEntity {
 	public PotionWartTileEntity(TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn);
 		this.effects = new LinkedList<WartEffect>();
+		this.modifier = Modifier.NONE;
 	}
 	
 	@Override
@@ -44,6 +47,7 @@ public class PotionWartTileEntity extends TileEntity {
 		for(int i = 0; i < count; i++) {
 			effects.add(this.readEffect(list.getCompound(i)));
 		}
+		modifier = Modifier.values()[compound.getInt("Modifier")];
 	}
 
 	@Override
@@ -54,6 +58,7 @@ public class PotionWartTileEntity extends TileEntity {
 			list.add(this.writeEffect(we));
 		}
 		comp.put("Effects", list);
+		comp.putInt("Modifier", modifier.ordinal());
 		return comp;
 	}
 
@@ -81,6 +86,24 @@ public class PotionWartTileEntity extends TileEntity {
 		this.markDirty();
 	}
 	
+	public boolean hasModifier() {
+		return modifier != Modifier.NONE;
+	}
+	
+	public void setModifier(Item item) {
+		if(item == Items.GLOWSTONE) {
+			modifier = Modifier.AMPLIFIER;
+		} else
+		if(item == Items.REDSTONE_BLOCK) {
+			modifier = Modifier.DURATION;
+		}
+		this.markDirty();
+	}
+	
+	public boolean isModifier(Item item) {
+		return item == Items.GLOWSTONE || item == Items.REDSTONE_BLOCK;
+	}
+	
 	private CompoundNBT writeEffect(WartEffect we) {
 		CompoundNBT nbt = new CompoundNBT();
 		nbt.putString("Effect", we.effect.getRegistryName().toString());
@@ -106,9 +129,8 @@ public class PotionWartTileEntity extends TileEntity {
 	}
 	
 	private EffectInstance createInstanceFromEffect(WartEffect we) {
-		Block below = world.getBlockState(pos.down()).getBlock();
-		int duration = below == Blocks.REDSTONE_BLOCK ? (int)(we.duration * 1.5F) : we.duration;
-		int amplifier = below == Blocks.GLOWSTONE ? we.amplifier + 1 : we.amplifier;
+		int duration = modifier == Modifier.DURATION ? (int)(we.duration * 1.5F) : we.duration;
+		int amplifier = modifier == Modifier.AMPLIFIER ? we.amplifier + 1 : we.amplifier;
 		return new EffectInstance(we.effect, duration, amplifier);
 	}
 	
@@ -116,5 +138,9 @@ public class PotionWartTileEntity extends TileEntity {
 		public Effect effect;
 		public int amplifier;
 		public int duration;
+	}
+	
+	private enum Modifier {
+		NONE, DURATION, AMPLIFIER
 	}
 }

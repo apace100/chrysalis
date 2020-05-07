@@ -91,6 +91,11 @@ public class PotionWartBlock extends Block {
 				item.shrink(1);
 				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(Items.GLASS_BOTTLE), player.inventory.currentItem);
 				return ActionResultType.CONSUME;
+			} else
+			if(item != null && !item.isEmpty() && !wart.hasModifier() && wart.isModifier(item.getItem())) {
+				wart.setModifier(item.getItem());
+				item.shrink(1);
+				return ActionResultType.CONSUME;
 			}
 			wart.applyEffects(player);
 		}
