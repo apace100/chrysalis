@@ -5,6 +5,7 @@ import chrysalis.block.assembly.AssemblyBlock;
 import chrysalis.block.fan.FanBlock;
 import chrysalis.block.hopper_duct.HopperDuctBlock;
 import chrysalis.block.item_grate.ItemGrateBlock;
+import chrysalis.block.potion_wart.PotionWartBlock;
 import chrysalis.block.xp_store.XPStoreBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
@@ -41,6 +42,9 @@ public class Blocks {
 	@ObjectHolder(Chrysalis.MODID + ":xp_store")
 	public static Block XP_STORE;
 
+	@ObjectHolder(Chrysalis.MODID + ":potion_wart")
+	public static Block POTION_WART;
+
 	public static class Tags {
 
 		public static final Tag<Block> HOPPER_DUCTS = new BlockTags.Wrapper(
@@ -58,6 +62,7 @@ public class Blocks {
 		register(registry, "fan", new FanBlock());
 		register(registry, "press", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F)));
 		register(registry, "xp_store", new XPStoreBlock());
+		register(registry, "potion_wart", new PotionWartBlock());
 	}
 	
 	private static void register(IForgeRegistry<Block> registry, String regName, Block block) {
