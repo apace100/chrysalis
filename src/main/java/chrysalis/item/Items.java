@@ -61,7 +61,7 @@ public class Items {
 		addItem(registry, "xp_seed",
 				new XPSeedItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).food(XPSeedItem.FOOD)));
 		addItem(registry, "acid_bottle",
-				new AcidBottle(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(1)));
+				new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {

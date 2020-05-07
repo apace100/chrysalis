@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 @Mod.EventBusSubscriber(bus = Bus.FORGE)
 public class PlayerEventHandler {
@@ -19,7 +20,6 @@ public class PlayerEventHandler {
   @SubscribeEvent(priority = EventPriority.HIGH)
   public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
     if (!event.getWorld().isRemote) {
-      System.out.println("EVENT TRIGGERED");
       String milked = LivingUpdateEventHandler.milked;
       PlayerEntity player = event.getPlayer();
       Entity target = event.getTarget();
@@ -44,6 +44,6 @@ public class PlayerEventHandler {
   private static void milkSpider(PlayerEntity player, ItemStack heldItemStack) {
     heldItemStack.setCount(heldItemStack.getCount() - 1);
     ItemStack acidStack = new ItemStack(chrysalis.item.Items.ACID_BOTTLE);
-    player.inventory.addItemStackToInventory(acidStack);
+    ItemHandlerHelper.giveItemToPlayer(player, acidStack, player.inventory.currentItem);
   }
 }
