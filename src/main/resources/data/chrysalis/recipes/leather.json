@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RPR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "P": {
+      "item": "chrysalis:acid_bottle"
+    }
+  },
+  "result": {
+    "item": "minecraft:leather",
+    "count": 4
+  }
+}

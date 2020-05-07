@@ -1,11 +1,9 @@
 package chrysalis;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import chrysalis.ai.AIExtender;
 import chrysalis.block.assembly.BlueprintCreation;
 import chrysalis.block.press.Press;
+import chrysalis.events.AttributeEventHandler;
 import chrysalis.item.Items;
 import chrysalis.network.ModPacketHandler;
 import chrysalis.potion.Potions;
@@ -17,6 +15,8 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(Chrysalis.MODID)
 public class Chrysalis {

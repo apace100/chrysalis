@@ -24,7 +24,6 @@
   "item.minecraft.lingering_potion.effect.long_crit_damage": "Lingering Potion of Bloodletting",
   "item.minecraft.lingering_potion.effect.strong_crit_damage": "Lingering Potion of Bloodletting",
   "item.minecraft.tipped_arrow.effect.crit_damage": "Arrow of Bloodletting",
-  
   "item.minecraft.potion.effect.crit_chance": "Potion of Incision",
   "item.minecraft.potion.effect.long_crit_chance": "Potion of Incision",
   "item.minecraft.potion.effect.strong_crit_chance": "Potion of Incision",
@@ -35,16 +34,13 @@
   "item.minecraft.lingering_potion.effect.long_crit_chance": "Lingering Potion of Incision",
   "item.minecraft.lingering_potion.effect.strong_crit_chance": "Lingering Potion of Incision",
   "item.minecraft.tipped_arrow.effect.crit_chance": "Arrow of Incision",
-  
+  "item.chrysalis.acid_bottle": "Acid Bottle",
   "item.chrysalis.blueprint": "Blueprint",
   "item.chrysalis.written_blueprint": "Blueprint",
-  
   "item.chrysalis.xp_seed": "Seed of Wisdom",
-  
   "effect.chrysalis.death_teleport": "Death Wish",
   "effect.chrysalis.crit_damage": "Bloodletting",
   "effect.chrysalis.crit_chance": "Incision",
-  
   "attribute.name.generic.crit_chance": "Critical Strike Chance",
   "attribute.name.generic.crit_damage": "Critical Strike Damage"
 }

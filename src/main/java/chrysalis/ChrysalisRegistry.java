@@ -25,8 +25,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid=Chrysalis.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ChrysalisRegistry {
-	
-	@SubscribeEvent
+  @SubscribeEvent
     public static void onBlockRegistry(final RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> reg = event.getRegistry();
         Blocks.register(reg);

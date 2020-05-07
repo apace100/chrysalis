@@ -1,10 +1,12 @@
-package chrysalis;
+package chrysalis.events;
 
+import chrysalis.Attributes;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
 
 public class AttributeEventHandler {
 
