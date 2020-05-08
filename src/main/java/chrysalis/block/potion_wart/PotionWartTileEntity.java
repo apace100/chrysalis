@@ -100,8 +100,6 @@ public class PotionWartTileEntity extends TileEntity {
 	}
 	
 	public boolean isOwner(PlayerEntity player) {
-		System.out.println("Owner: " + ownerUUID.toString());
-		System.out.println("Player: " + player.getUniqueID().toString());
 		return player.getUniqueID().equals(ownerUUID);
 	}
 	
