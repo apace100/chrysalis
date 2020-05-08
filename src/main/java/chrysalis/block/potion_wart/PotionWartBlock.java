@@ -3,6 +3,7 @@ package chrysalis.block.potion_wart;
 import java.util.List;
 
 import chrysalis.block.Blocks;
+import chrysalis.block.potion_wart.PotionWartTileEntity.BlockModifier;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -20,7 +21,9 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -28,12 +31,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class PotionWartBlock extends Block {
-	
+
 	public PotionWartBlock() {
 		super(Block.Properties.create(Material.ORGANIC, MaterialColor.RED).hardnessAndResistance(1.0F).sound(SoundType.WOOD));
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
+
 	@SubscribeEvent
 	public void onLeftClick(PlayerInteractEvent.LeftClickBlock event) {
 		if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof PotionWartBlock) {
@@ -44,7 +47,7 @@ public class PotionWartBlock extends Block {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onRightClick(PlayerInteractEvent.RightClickBlock event) {
 		if(event.getWorld().getBlockState(event.getPos()).getBlock() == net.minecraft.block.Blocks.NETHER_WART_BLOCK) {
@@ -54,6 +57,7 @@ public class PotionWartBlock extends Block {
 				TileEntity te = event.getWorld().getTileEntity(event.getPos());
 				if(te != null && te instanceof PotionWartTileEntity) {
 					PotionWartTileEntity wart = (PotionWartTileEntity)te;
+					wart.setOwner(event.getPlayer());
 					if(item != null && !item.isEmpty() && item.getItem() instanceof PotionItem && !wart.hasEffects()) {
 						List<EffectInstance> effects = PotionUtils.getEffectsFromStack(item);
 						wart.setEffects(effects);
@@ -92,11 +96,18 @@ public class PotionWartBlock extends Block {
 				ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(Items.GLASS_BOTTLE), player.inventory.currentItem);
 				return ActionResultType.CONSUME;
 			} else
-			if(item != null && !item.isEmpty() && !wart.hasModifier() && wart.isModifier(item.getItem())) {
-				wart.setModifier(item.getItem());
-				item.shrink(1);
-				return ActionResultType.CONSUME;
-			}
+				if(item != null && !item.isEmpty() && wart.isValidModifier(player, item.getItem())) {
+					wart.addModifier(item.getItem());
+					ItemStack container = null;
+					if(item.hasContainerItem()) {
+						container = item.getContainerItem();
+					}
+					item.shrink(1);
+					if(container != null) {
+						ItemHandlerHelper.giveItemToPlayer(player, container, player.inventory.currentItem);
+					}
+					return ActionResultType.CONSUME;
+				}
 			wart.applyEffects(player);
 		}
 		return ActionResultType.PASS;
@@ -137,6 +148,18 @@ public class PotionWartBlock extends Block {
 			wart.applyEffects(entityIn);
 		}
 	}
-	
-	
+
+	@Override
+	public float getExplosionResistance(BlockState state, IWorldReader world, BlockPos pos, Entity exploder,
+			Explosion explosion) {
+		TileEntity te = world.getTileEntity(pos);
+		if(te != null && te instanceof PotionWartTileEntity) {
+			PotionWartTileEntity wart = (PotionWartTileEntity)te;
+			if(wart.hasBlockModifier(BlockModifier.BLAST_RESISTANT)) {
+				return 1200F;
+			}
+		}
+		return 1F;
+	}
+
 }
