@@ -22,6 +22,8 @@ public class ChrysalisClient implements ChrysalisProxy {
 	private void setupRenderLayers() {
 		RenderTypeLookup.setRenderLayer(Blocks.ITEM_GRATE, RenderType.getCutout());
 		RenderTypeLookup.setRenderLayer(Blocks.XP_STORE, RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(Blocks.POTION_WART_WOODEN_DOOR, RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(Blocks.POTION_WART_IRON_DOOR, RenderType.getCutout());
 	}
 
 	@Override

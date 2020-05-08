@@ -57,6 +57,8 @@ public class Items {
 		addBlockItem(registry, Blocks.FAN, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.PRESS, Chrysalis.ITEM_GROUP);
 		addBlockItem(registry, Blocks.XP_STORE, Chrysalis.ITEM_GROUP);
+		addBlockItem(registry, Blocks.POTION_WART_WOODEN_DOOR, Chrysalis.ITEM_GROUP);
+		addBlockItem(registry, Blocks.POTION_WART_IRON_DOOR, Chrysalis.ITEM_GROUP);
 
 		addItem(registry, "xp_seed",
 				new XPSeedItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).food(XPSeedItem.FOOD)));

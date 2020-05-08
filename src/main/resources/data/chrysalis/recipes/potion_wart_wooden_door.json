@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IDI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:crops/nether_wart"
+    },
+	"D": {
+	  "tag": "chrysalis:wooden_doors"
+	}
+  },
+  "result": {
+    "item": "chrysalis:potion_wart_wooden_door",
+    "count": 1
+  }
+}

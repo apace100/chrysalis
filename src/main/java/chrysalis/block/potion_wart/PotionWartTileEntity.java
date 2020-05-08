@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.UUID;
 
 import chrysalis.Chrysalis;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +19,7 @@ import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
@@ -54,6 +57,9 @@ public class PotionWartTileEntity extends TileEntity {
 
 	@Override
 	public void read(CompoundNBT compound) {
+		if(!isActiveTE()) {
+			return;
+		}
 		super.read(compound);
 		ownerUUID = compound.getUniqueId("Owner");
 		ListNBT list = (ListNBT)compound.get("Effects");
@@ -73,6 +79,9 @@ public class PotionWartTileEntity extends TileEntity {
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
+		if(!isActiveTE()) {
+			return compound;
+		}
 		CompoundNBT comp = super.write(compound);
 		comp.putUniqueId("Owner", ownerUUID);
 		ListNBT list = new ListNBT();
@@ -198,6 +207,17 @@ public class PotionWartTileEntity extends TileEntity {
 		int duration = potionModifier == PotionModifier.DURATION ? (int)(we.duration * 1.5F) : we.duration;
 		int amplifier = potionModifier == PotionModifier.AMPLIFIER ? we.amplifier + 1 : we.amplifier;
 		return new EffectInstance(we.effect, duration, amplifier);
+	}
+	
+	private boolean isActiveTE() {
+		if(world == null) {
+			return true;
+		}
+		BlockState state = world.getBlockState(pos);
+		if(state.getBlock() instanceof PotionWartDoorBlock) {
+			return state.get(DoorBlock.HALF) == DoubleBlockHalf.LOWER;
+		}
+		return true;
 	}
 	
 	private class WartEffect {

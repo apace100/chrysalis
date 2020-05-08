@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "chrysalis:block/potion_wart_door_bottom",
+        "top": "chrysalis:block/potion_wart_door_top"
+    }
+}

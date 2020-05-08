@@ -6,9 +6,11 @@ import chrysalis.block.fan.FanBlock;
 import chrysalis.block.hopper_duct.HopperDuctBlock;
 import chrysalis.block.item_grate.ItemGrateBlock;
 import chrysalis.block.potion_wart.PotionWartBlock;
+import chrysalis.block.potion_wart.PotionWartDoorBlock;
 import chrysalis.block.xp_store.XPStoreBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.OreBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
@@ -44,7 +46,13 @@ public class Blocks {
 
 	@ObjectHolder(Chrysalis.MODID + ":potion_wart")
 	public static Block POTION_WART;
+	
+	@ObjectHolder(Chrysalis.MODID + ":potion_wart_wooden_door")
+	public static Block POTION_WART_WOODEN_DOOR;
 
+	@ObjectHolder(Chrysalis.MODID + ":potion_wart_iron_door")
+	public static Block POTION_WART_IRON_DOOR;
+	
 	public static class Tags {
 
 		public static final Tag<Block> HOPPER_DUCTS = new BlockTags.Wrapper(
@@ -63,6 +71,8 @@ public class Blocks {
 		register(registry, "press", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F)));
 		register(registry, "xp_store", new XPStoreBlock());
 		register(registry, "potion_wart", new PotionWartBlock());
+		register(registry, "potion_wart_wooden_door", new PotionWartDoorBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(1F).sound(SoundType.WOOD).notSolid()));
+		register(registry, "potion_wart_iron_door", new PotionWartDoorBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(5F).sound(SoundType.METAL).notSolid()));
 	}
 	
 	private static void register(IForgeRegistry<Block> registry, String regName, Block block) {

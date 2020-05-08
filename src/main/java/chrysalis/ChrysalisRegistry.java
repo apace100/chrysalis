@@ -54,7 +54,7 @@ public class ChrysalisRegistry {
       reg.register(TileEntityType.Builder.create(FanTileEntity::new, Blocks.FAN).build(null)
           .setRegistryName("fan"));
       reg.register(TileEntityType.Builder.create(XPStoreTileEntity::new, Blocks.XP_STORE).build(null).setRegistryName("xp_store"));
-      reg.register(TileEntityType.Builder.create(PotionWartTileEntity::new, Blocks.POTION_WART).build(null).setRegistryName("nether_wart"));
+      reg.register(TileEntityType.Builder.create(PotionWartTileEntity::new, Blocks.POTION_WART, Blocks.POTION_WART_IRON_DOOR, Blocks.POTION_WART_WOODEN_DOOR).build(null).setRegistryName("nether_wart"));
     }
     
     @SubscribeEvent
