@@ -1,7 +1,8 @@
 {
     "textures": {
         "xp_store_top": "chrysalis:block/xp_store_top",
-        "xp_store_side": "chrysalis:block/xp_store_side"
+        "xp_store_side": "chrysalis:block/xp_store_side",
+        "particle": "minecraft:block/obsidian"
     },
     "display": {
         "gui": {
@@ -46,7 +47,7 @@
                 "south": { "texture": "#xp_store_side", "uv": [ 2, 14, 14, 16 ] },
                 "west": { "texture": "#xp_store_side", "uv": [ 2, 14, 14, 16 ] },
                 "up": { "texture": "#xp_store_top", "uv": [ 2, 2, 14, 14 ] },
-                "down": { "texture": "#xp_store_top", "uv": [ 2, 2, 14, 14 ], "cullface": "down" }
+                "down": { "texture": "#xp_store_top", "uv": [ 2, 2, 14, 14 ] }
             }
         },
         {
