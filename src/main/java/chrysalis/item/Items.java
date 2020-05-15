@@ -3,9 +3,7 @@ package chrysalis.item;
 import chrysalis.Chrysalis;
 import chrysalis.block.Blocks;
 import chrysalis.item.slingShot.SlingShot;
-import chrysalis.item.slingShot.ammo.SlingShotStone;
-import chrysalis.item.slingShot.SlingShot;
-import chrysalis.item.slingShot.ammo.SlingShotStone;
+import chrysalis.item.slingShot.ammo.SlingShotStoneItem;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -43,6 +41,9 @@ public class Items {
 	@ObjectHolder(Chrysalis.MODID + ":sling_shot_stone")
 	public static Item SLING_SHOT_STONE;
 
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot_stone_item")
+	public static Item SLING_SHOT_STONE_ITEM;
+
 	private static void addBlockItem(IForgeRegistry<Item> registry, Block block, ItemGroup group) {
 		Item item = null;
 		if (group != null) {
@@ -78,8 +79,8 @@ public class Items {
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
 		addItem(registry, "sling_shot",
 				new SlingShot(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(1)));
-		addItem(registry, "sling_shot_stone",
-				new SlingShotStone(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
+		addItem(registry, "sling_shot_stone_item",
+				new SlingShotStoneItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
 
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {
 
@@ -89,7 +90,8 @@ public class Items {
 				CompoundNBT blueprintNBT = stack.getChildTag("Blueprint");
 				if (blueprintNBT != null) {
 					ItemStack output = ItemStack.read(blueprintNBT.getCompound("Output"));
-					StringTextComponent outputTooltip = new StringTextComponent(" (" + output.getCount() + "x ");
+					StringTextComponent outputTooltip = new StringTextComponent(
+							" (" + output.getCount() + "x ");
 					outputTooltip.appendSibling(output.getDisplayName()).appendText(")");
 					tooltip.get(0).appendSibling(outputTooltip);
 

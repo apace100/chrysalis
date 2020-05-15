@@ -28,14 +28,16 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
   public void tick() {
     if (world != null) {
       fanDirection = world.getBlockState(pos).get(BlockStateProperties.FACING);
+
       elevationDistance = getActuallElevationHeigth();
+
       moveEntities();
     }
   }
 
   private void moveEntities() {
     AxisAlignedBB scan = new AxisAlignedBB(pos,
-        pos.offset(fanDirection, (int) elevationDistance - 1).add(1.0, 1.0, 1.0));
+        pos.offset(fanDirection, (int) elevationDistance).add(1.0, 1.0, 1.0));
     List<Entity> list = world.getEntitiesWithinAABB(Entity.class, scan);
     for (Entity entity : list) {
       addMotion(entity);
