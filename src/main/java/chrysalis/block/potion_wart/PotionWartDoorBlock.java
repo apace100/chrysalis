@@ -5,6 +5,7 @@ import java.util.List;
 import chrysalis.block.potion_wart.PotionWartTileEntity.BlockModifier;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DoorBlock;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -146,5 +147,10 @@ public class PotionWartDoorBlock extends DoorBlock {
 			}
 		}
 		return 1F;
+	}
+
+	@Override
+	public PushReaction getPushReaction(BlockState state) {
+		return PushReaction.BLOCK;
 	}
 }
