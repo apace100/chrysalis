@@ -15,6 +15,8 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class Potions {
 	
+	public static boolean addVanillaPotionRecipes = false;
+	
 	@ObjectHolder(Chrysalis.MODID + ":death_teleport")
 	public static Effect DEATH_TELEPORT_EFFECT;
 	
@@ -137,39 +139,41 @@ public class Potions {
 		registry.register(new Potion(new EffectInstance(CRIT_DAMAGE_EFFECT, 7200)).setRegistryName("long_crit_damage"));
 		registry.register(new Potion(new EffectInstance(CRIT_DAMAGE_EFFECT, 1800, 1)).setRegistryName("strong_crit_damage"));
 		
-		registry.register(new Potion(new EffectInstance(Effects.HASTE, 3600)).setRegistryName("haste"));
-		registry.register(new Potion(new EffectInstance(Effects.HASTE, 7200)).setRegistryName("long_haste"));
-		registry.register(new Potion(new EffectInstance(Effects.HASTE, 1800, 1)).setRegistryName("strong_haste"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.MINING_FATIGUE, 2400)).setRegistryName("mining_fatigue"));
-		registry.register(new Potion(new EffectInstance(Effects.MINING_FATIGUE, 4800)).setRegistryName("long_mining_fatigue"));
-		registry.register(new Potion(new EffectInstance(Effects.MINING_FATIGUE, 1600, 1)).setRegistryName("strong_mining_fatigue"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.NAUSEA, 2400)).setRegistryName("nausea"));
-		registry.register(new Potion(new EffectInstance(Effects.NAUSEA, 4800)).setRegistryName("long_nausea"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.BLINDNESS, 2400)).setRegistryName("blindness"));
-		registry.register(new Potion(new EffectInstance(Effects.BLINDNESS, 4800)).setRegistryName("long_blindness"));
-		registry.register(new Potion(new EffectInstance(Effects.BLINDNESS, 1600, 1)).setRegistryName("strong_blindness"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.HUNGER, 2400)).setRegistryName("hunger"));
-		registry.register(new Potion(new EffectInstance(Effects.HUNGER, 4800)).setRegistryName("long_hunger"));
-		registry.register(new Potion(new EffectInstance(Effects.HUNGER, 1600, 1)).setRegistryName("strong_hunger"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.WITHER, 1600)).setRegistryName("wither"));
-		registry.register(new Potion(new EffectInstance(Effects.WITHER, 3200)).setRegistryName("long_wither"));
-		registry.register(new Potion(new EffectInstance(Effects.WITHER, 800, 1)).setRegistryName("strong_wither"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.ABSORPTION, 3600)).setRegistryName("absorption"));
-		registry.register(new Potion(new EffectInstance(Effects.ABSORPTION, 7200)).setRegistryName("long_absorption"));
-		registry.register(new Potion(new EffectInstance(Effects.ABSORPTION, 1800, 1)).setRegistryName("strong_absorption"));
+		if(addVanillaPotionRecipes) {
+			registry.register(new Potion(new EffectInstance(Effects.HASTE, 3600)).setRegistryName("haste"));
+			registry.register(new Potion(new EffectInstance(Effects.HASTE, 7200)).setRegistryName("long_haste"));
+			registry.register(new Potion(new EffectInstance(Effects.HASTE, 1800, 1)).setRegistryName("strong_haste"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.MINING_FATIGUE, 2400)).setRegistryName("mining_fatigue"));
+			registry.register(new Potion(new EffectInstance(Effects.MINING_FATIGUE, 4800)).setRegistryName("long_mining_fatigue"));
+			registry.register(new Potion(new EffectInstance(Effects.MINING_FATIGUE, 1600, 1)).setRegistryName("strong_mining_fatigue"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.NAUSEA, 2400)).setRegistryName("nausea"));
+			registry.register(new Potion(new EffectInstance(Effects.NAUSEA, 4800)).setRegistryName("long_nausea"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.BLINDNESS, 2400)).setRegistryName("blindness"));
+			registry.register(new Potion(new EffectInstance(Effects.BLINDNESS, 4800)).setRegistryName("long_blindness"));
+			registry.register(new Potion(new EffectInstance(Effects.BLINDNESS, 1600, 1)).setRegistryName("strong_blindness"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.HUNGER, 2400)).setRegistryName("hunger"));
+			registry.register(new Potion(new EffectInstance(Effects.HUNGER, 4800)).setRegistryName("long_hunger"));
+			registry.register(new Potion(new EffectInstance(Effects.HUNGER, 1600, 1)).setRegistryName("strong_hunger"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.WITHER, 1600)).setRegistryName("wither"));
+			registry.register(new Potion(new EffectInstance(Effects.WITHER, 3200)).setRegistryName("long_wither"));
+			registry.register(new Potion(new EffectInstance(Effects.WITHER, 800, 1)).setRegistryName("strong_wither"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.ABSORPTION, 3600)).setRegistryName("absorption"));
+			registry.register(new Potion(new EffectInstance(Effects.ABSORPTION, 7200)).setRegistryName("long_absorption"));
+			registry.register(new Potion(new EffectInstance(Effects.ABSORPTION, 1800, 1)).setRegistryName("strong_absorption"));
 
-		registry.register(new Potion(new EffectInstance(Effects.GLOWING, 3600)).setRegistryName("glowing"));
-		registry.register(new Potion(new EffectInstance(Effects.GLOWING, 7200)).setRegistryName("long_glowing"));
-		
-		registry.register(new Potion(new EffectInstance(Effects.LEVITATION, 2400)).setRegistryName("levitation"));
-		registry.register(new Potion(new EffectInstance(Effects.LEVITATION, 4800)).setRegistryName("long_levitation"));
-		registry.register(new Potion(new EffectInstance(Effects.LEVITATION, 1600, 1)).setRegistryName("strong_levitation"));
+			registry.register(new Potion(new EffectInstance(Effects.GLOWING, 3600)).setRegistryName("glowing"));
+			registry.register(new Potion(new EffectInstance(Effects.GLOWING, 7200)).setRegistryName("long_glowing"));
+			
+			registry.register(new Potion(new EffectInstance(Effects.LEVITATION, 2400)).setRegistryName("levitation"));
+			registry.register(new Potion(new EffectInstance(Effects.LEVITATION, 4800)).setRegistryName("long_levitation"));
+			registry.register(new Potion(new EffectInstance(Effects.LEVITATION, 1600, 1)).setRegistryName("strong_levitation"));
+		}
 	}
 	
 	public static void registerRecipes() {
@@ -186,41 +190,43 @@ public class Potions {
 		PotionBrewing.addMix(CRIT_DAMAGE_POTION, Items.REDSTONE, LONG_CRIT_DAMAGE_POTION);
 		PotionBrewing.addMix(CRIT_DAMAGE_POTION, Items.GLOWSTONE_DUST, STRONG_CRIT_DAMAGE_POTION);
 		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.SWEET_BERRIES, HASTE_POTION);
-		PotionBrewing.addMix(HASTE_POTION, Items.REDSTONE, LONG_HASTE_POTION);
-		PotionBrewing.addMix(HASTE_POTION, Items.GLOWSTONE_DUST, STRONG_HASTE_POTION);
+		if(addVanillaPotionRecipes) {
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.SWEET_BERRIES, HASTE_POTION);
+			PotionBrewing.addMix(HASTE_POTION, Items.REDSTONE, LONG_HASTE_POTION);
+			PotionBrewing.addMix(HASTE_POTION, Items.GLOWSTONE_DUST, STRONG_HASTE_POTION);
 
-		PotionBrewing.addMix(HASTE_POTION, Items.FERMENTED_SPIDER_EYE, MINING_FATIGUE_POTION);
-		PotionBrewing.addMix(LONG_HASTE_POTION, Items.FERMENTED_SPIDER_EYE, LONG_MINING_FATIGUE_POTION);
-		PotionBrewing.addMix(STRONG_HASTE_POTION, Items.FERMENTED_SPIDER_EYE, STRONG_MINING_FATIGUE_POTION);
-		PotionBrewing.addMix(MINING_FATIGUE_POTION, Items.REDSTONE, LONG_MINING_FATIGUE_POTION);
-		PotionBrewing.addMix(MINING_FATIGUE_POTION, Items.GLOWSTONE_DUST, STRONG_MINING_FATIGUE_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.CHORUS_FRUIT, NAUSEA_POTION);
-		PotionBrewing.addMix(NAUSEA_POTION, Items.REDSTONE, LONG_NAUSEA_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.POISONOUS_POTATO, BLINDNESS_POTION);
-		PotionBrewing.addMix(BLINDNESS_POTION, Items.REDSTONE, LONG_BLINDNESS_POTION);
-		PotionBrewing.addMix(BLINDNESS_POTION, Items.GLOWSTONE_DUST, STRONG_BLINDNESS_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.ROTTEN_FLESH, HUNGER_POTION);
-		PotionBrewing.addMix(HUNGER_POTION, Items.REDSTONE, LONG_HUNGER_POTION);
-		PotionBrewing.addMix(HUNGER_POTION, Items.GLOWSTONE_DUST, STRONG_HUNGER_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.WITHER_ROSE, WITHER_POTION);
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.WITHER_SKELETON_SKULL, WITHER_POTION);
-		PotionBrewing.addMix(WITHER_POTION, Items.REDSTONE, LONG_WITHER_POTION);
-		PotionBrewing.addMix(WITHER_POTION, Items.GLOWSTONE_DUST, STRONG_WITHER_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.SPONGE, ABSORPTION_POTION);
-		PotionBrewing.addMix(ABSORPTION_POTION, Items.REDSTONE, LONG_ABSORPTION_POTION);
-		PotionBrewing.addMix(ABSORPTION_POTION, Items.GLOWSTONE_DUST, STRONG_ABSORPTION_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.GLOWSTONE, GLOWING_POTION);
-		PotionBrewing.addMix(GLOWING_POTION, Items.REDSTONE, LONG_GLOWING_POTION);
-		
-		PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.SHULKER_SHELL, LEVITATION_POTION);
-		PotionBrewing.addMix(LEVITATION_POTION, Items.REDSTONE, LONG_LEVITATION_POTION);
-		PotionBrewing.addMix(LEVITATION_POTION, Items.GLOWSTONE_DUST, STRONG_LEVITATION_POTION);
+			PotionBrewing.addMix(HASTE_POTION, Items.FERMENTED_SPIDER_EYE, MINING_FATIGUE_POTION);
+			PotionBrewing.addMix(LONG_HASTE_POTION, Items.FERMENTED_SPIDER_EYE, LONG_MINING_FATIGUE_POTION);
+			PotionBrewing.addMix(STRONG_HASTE_POTION, Items.FERMENTED_SPIDER_EYE, STRONG_MINING_FATIGUE_POTION);
+			PotionBrewing.addMix(MINING_FATIGUE_POTION, Items.REDSTONE, LONG_MINING_FATIGUE_POTION);
+			PotionBrewing.addMix(MINING_FATIGUE_POTION, Items.GLOWSTONE_DUST, STRONG_MINING_FATIGUE_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.CHORUS_FRUIT, NAUSEA_POTION);
+			PotionBrewing.addMix(NAUSEA_POTION, Items.REDSTONE, LONG_NAUSEA_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.POISONOUS_POTATO, BLINDNESS_POTION);
+			PotionBrewing.addMix(BLINDNESS_POTION, Items.REDSTONE, LONG_BLINDNESS_POTION);
+			PotionBrewing.addMix(BLINDNESS_POTION, Items.GLOWSTONE_DUST, STRONG_BLINDNESS_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.ROTTEN_FLESH, HUNGER_POTION);
+			PotionBrewing.addMix(HUNGER_POTION, Items.REDSTONE, LONG_HUNGER_POTION);
+			PotionBrewing.addMix(HUNGER_POTION, Items.GLOWSTONE_DUST, STRONG_HUNGER_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.WITHER_ROSE, WITHER_POTION);
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.WITHER_SKELETON_SKULL, WITHER_POTION);
+			PotionBrewing.addMix(WITHER_POTION, Items.REDSTONE, LONG_WITHER_POTION);
+			PotionBrewing.addMix(WITHER_POTION, Items.GLOWSTONE_DUST, STRONG_WITHER_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.SPONGE, ABSORPTION_POTION);
+			PotionBrewing.addMix(ABSORPTION_POTION, Items.REDSTONE, LONG_ABSORPTION_POTION);
+			PotionBrewing.addMix(ABSORPTION_POTION, Items.GLOWSTONE_DUST, STRONG_ABSORPTION_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.GLOWSTONE, GLOWING_POTION);
+			PotionBrewing.addMix(GLOWING_POTION, Items.REDSTONE, LONG_GLOWING_POTION);
+			
+			PotionBrewing.addMix(net.minecraft.potion.Potions.AWKWARD, Items.SHULKER_SHELL, LEVITATION_POTION);
+			PotionBrewing.addMix(LEVITATION_POTION, Items.REDSTONE, LONG_LEVITATION_POTION);
+			PotionBrewing.addMix(LEVITATION_POTION, Items.GLOWSTONE_DUST, STRONG_LEVITATION_POTION);
+		}
 	}
 }
