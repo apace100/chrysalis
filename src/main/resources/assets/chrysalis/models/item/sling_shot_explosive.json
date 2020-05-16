@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "chrysalis:item/sling_shot_stone"
+        "layer0": "chrysalis:item/sling_shot_explosive"
     }
 }

@@ -3,7 +3,8 @@ package chrysalis;
 import chrysalis.block.Blocks;
 import chrysalis.block.assembly.AssemblyContainer;
 import chrysalis.block.assembly.AssemblyScreen;
-import chrysalis.item.slingShot.ammo.SlingShotStone;
+import chrysalis.item.slingShot.ammo.slingShotExplosive.SlingShotExplosive;
+import chrysalis.item.slingShot.ammo.slingShotStone.SlingShotStone;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -19,9 +20,15 @@ public class ChrysalisClient implements ChrysalisProxy {
 	@SubscribeEvent
 	public void setup(FMLClientSetupEvent event) {
 		ScreenManager.registerFactory(AssemblyContainer.TYPE, AssemblyScreen::new);
+
 		RenderingRegistry.registerEntityRenderingHandler(
 				SlingShotStone.TYPE,
 				erm -> new SpriteRenderer<>(erm, Minecraft.getInstance().getItemRenderer()));
+
+		RenderingRegistry.registerEntityRenderingHandler(
+				SlingShotExplosive.TYPE,
+				erm -> new SpriteRenderer<>(erm, Minecraft.getInstance().getItemRenderer()));
+
 		setupRenderLayers();
 	}
 	

@@ -9,7 +9,8 @@ import chrysalis.block.item_grate.ItemGrateTileEntity;
 import chrysalis.block.potion_wart.PotionWartTileEntity;
 import chrysalis.block.xp_store.XPStoreTileEntity;
 import chrysalis.item.Items;
-import chrysalis.item.slingShot.ammo.SlingShotStone;
+import chrysalis.item.slingShot.ammo.slingShotExplosive.SlingShotExplosive;
+import chrysalis.item.slingShot.ammo.slingShotStone.SlingShotStone;
 import chrysalis.potion.Potions;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -46,7 +47,17 @@ public class ChrysalisRegistry {
       IForgeRegistry<EntityType<?>> req = event.getRegistry();
       req.register(
           EntityType.Builder.<SlingShotStone>create(SlingShotStone::new, EntityClassification.MISC)
-              .build("sling_shot_stone_item").setRegistryName(Chrysalis.MODID, "sling_shot_stone"));
+              .setTrackingRange(128)
+              .setShouldReceiveVelocityUpdates(true)
+              .immuneToFire()
+              .build("sling_shot_stone").setRegistryName(Chrysalis.MODID, "sling_shot_stone"));
+      req.register(
+          EntityType.Builder.<SlingShotExplosive>create(SlingShotExplosive::new,
+              EntityClassification.MISC)
+              .setTrackingRange(128)
+              .setShouldReceiveVelocityUpdates(true)
+              .build("sling_shot_explosive")
+              .setRegistryName(Chrysalis.MODID, "sling_shot_explosive"));
     }
     
     @SubscribeEvent

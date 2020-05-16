@@ -1,16 +1,20 @@
 package chrysalis.item.slingShot;
 
+import chrysalis.item.slingShot.ammo.SlingShotAmmoBase;
+import chrysalis.item.slingShot.ammo.SlingShotAmmoItemBase;
 import chrysalis.utils.Utils;
 import java.util.function.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.item.UseAction;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -21,8 +25,7 @@ public class SlingShot extends ShootableItem {
   public static final int Durability = 72000;
   public static final int MAX_DRAWING_DURATION = 30;
   public static final Predicate<ItemStack> SLING_SHOT_AMMO = itemStack -> {
-//    return itemStack.getItem() instanceof SlingShotAmmoBase;
-    return true;
+    return itemStack.getItem() instanceof SlingShotAmmoItemBase;
   };
 
   public SlingShot(Properties properties) {
@@ -47,7 +50,6 @@ public class SlingShot extends ShootableItem {
    */
   public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving,
       int timeLeft) {
-    System.out.println("deactivated SlingShot");
     if (entityLiving instanceof PlayerEntity) {
       PlayerEntity playerentity = (PlayerEntity) entityLiving;
       if (!worldIn.isRemote) {
@@ -57,92 +59,53 @@ public class SlingShot extends ShootableItem {
         RayTraceResult rayTraceResult = Utils
             .rayTrace(worldIn, playerentity, eyePositionOfPlayer,
                 positionLookedAt);
-        System.out.println(rayTraceResult.getType());
         double velocity = getVelocity((double) Durability - timeLeft);
-        System.out.println(velocity);
         switch (rayTraceResult.getType()) {
           case ENTITY:
             Entity entity = Utils
                 .findEntiyOnPath(worldIn, playerentity, eyePositionOfPlayer, positionLookedAt)
                 .getEntity();
-            shootEntity(entity, entity.getLookVec(), velocity);
+            shootEntity(entity, playerentity.getLookVec(), velocity);
             break;
           case BLOCK:
             shootPlayer(playerentity, velocity);
             break;
           case MISS:
-            shootProjektile();
+            shootProjectile(worldIn, playerentity, velocity);
             break;
         }
       }
     }
-//      boolean isCreativeMode = playerentity.abilities.isCreativeMode;
-//      ItemStack itemstack = playerentity.findAmmo(stack);
-//
-//      int i = this.getUseDuration(stack) - timeLeft;
-//      i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty() || isCreativeMode);
-//      if (i < 0) return;
-//
-//      if (!itemstack.isEmpty() || isCreativeMode) {
-//        if (itemstack.isEmpty()) {
-//          itemstack = new ItemStack(chrysalis.item.Items.SLING_SHOT_STONE);
-//        }
-//
-//        float f = getArrowVelocity(i);
-//        if (((double)f > 0.1D)) {
-////          boolean flag1 = playerentity.abilities.isCreativeMode || (itemstack.getItem() instanceof SlingShotAmmoBase
-////              && ((SlingShotAmmoBase)itemstack.getItem()).isInfinite(itemstack, stack, playerentity));
-//          if (!worldIn.isRemote) {
-////            SlingShotAmmoBase SlingShotAmmo = (SlingShotAmmoBase) (itemstack.getItem() instanceof SlingShotAmmoBase ? itemstack.getItem() : chrysalis.item.Items.SLING_SHOT_STONE);
-////            AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
-////            abstractarrowentity = customeArrow(abstractarrowentity);
-////            abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, 1.0F);
-////            if (f == 1.0F) {
-////              abstractarrowentity.setIsCritical(true);
-////            }
-//
-////            int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-////            if (j > 0) {
-////              abstractarrowentity.setDamage(abstractarrowentity.getDamage() + (double)j * 0.5D + 0.5D);
-////            }
-////
-////            int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-////            if (k > 0) {
-////              abstractarrowentity.setKnockbackStrength(k);
-////            }
-////
-////            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
-////              abstractarrowentity.setFire(100);
-////            }
-//
-//            stack.damageItem(1, playerentity,playerEntity -> {
-//             playerEntity.sendBreakAnimation(playerentity.getActiveHand());
-//            });
-////            if (flag1 || playerentity.abilities.isCreativeMode && (itemstack.getItem() == net.minecraft.item.Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
-////              abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
-////            }
-//
-//            worldIn.addEntity(abstractarrowentity);
-//          }
-//
-//          worldIn.playSound((PlayerEntity)null, playerentity.getPosX(), playerentity.getPosY(), playerentity.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-//          if (!flag1 && !playerentity.abilities.isCreativeMode) {
-//            itemstack.shrink(1);
-//            if (itemstack.isEmpty()) {
-//              playerentity.inventory.deleteStack(itemstack);
-//            }
-//          }
-//
-//          playerentity.addStat(Stats.ITEM_USED.get(this));
-//        }
-//      }
-//    }
 
   }
 
-  private void shootProjektile() {
+  private void shootProjectile(World worldIn, PlayerEntity playerIn, double velocity) {
     System.out.println("shoot Projectile");
+    ItemStack ammoStack = findAmmo(playerIn);
+    if (!worldIn.isRemote) {
+      if (ammoStack != null && ammoStack != ItemStack.EMPTY) {
+        SlingShotAmmoItemBase ammoItem = (SlingShotAmmoItemBase) ammoStack.getItem();
 
+        SlingShotAmmoBase slingShotAmmo = ammoItem.getShootableEntity(playerIn, worldIn);
+        playShootSound(worldIn, playerIn);
+        slingShotAmmo
+            .shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F,
+                (float) (2F * (velocity / 3)), 0.0F);
+        playerIn.world.addEntity(slingShotAmmo);
+      }
+
+      playerIn.addStat(Stats.ITEM_USED.get(this));
+      if (!playerIn.abilities.isCreativeMode) {
+        ammoStack.shrink(1);
+      }
+    }
+  }
+
+  protected void playShootSound(World worldIn, PlayerEntity playerIn) {
+    worldIn.playSound((PlayerEntity) null, playerIn.getPosX(), playerIn.getPosY(),
+        playerIn.getPosZ(),
+        SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F,
+        0.4F / (random.nextFloat() * 0.4F + 0.8F));
   }
 
   private void shootEntity(Entity entity, Vec3d direction, double velocity) {
@@ -180,14 +143,8 @@ public class SlingShot extends ShootableItem {
       Hand handIn) {
     System.out.println("activated SlingShot");
     ItemStack itemstack = playerIn.getHeldItem(handIn);
-//    boolean flag = !playerIn.findAmmo(itemstack).isEmpty();
-//    playerIn.addStat(Stats.ITEM_USED.get(this));
-    if (!playerIn.abilities.isCreativeMode) {
-      return ActionResult.resultFail(itemstack);
-    } else {
       playerIn.setActiveHand(handIn);
       return ActionResult.resultConsume(itemstack);
-    }
   }
 
   /**
@@ -198,7 +155,13 @@ public class SlingShot extends ShootableItem {
     return SLING_SHOT_AMMO;
   }
 
-  public AbstractArrowEntity customeArrow(AbstractArrowEntity arrow) {
-    return arrow;
+  private ItemStack findAmmo(PlayerEntity player) {
+    for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+      ItemStack itemstack = player.inventory.getStackInSlot(i);
+      if (SLING_SHOT_AMMO.test(itemstack)) {
+        return itemstack;
+      }
+    }
+    return ItemStack.EMPTY;
   }
 }
