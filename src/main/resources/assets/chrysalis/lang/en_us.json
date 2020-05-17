@@ -131,8 +131,10 @@
   "item.minecraft.lingering_potion.effect.long_levitation": "Lingering Potion of Levitation",
   "item.minecraft.lingering_potion.effect.strong_levitation": "Lingering Potion of Levitation",
   "item.minecraft.tipped_arrow.effect.levitation": "Arrow of Levitation",
-  
   "item.chrysalis.acid_bottle": "Acid Bottle",
+  "item.chrysalis.sling_shot": "Sling Shot",
+  "item.chrysalis.sling_shot_stone": "Sling stone",
+  "item.chrysalis.sling_shot_explosive": "Sling grenade",
   "item.chrysalis.blueprint": "Blueprint",
   "item.chrysalis.written_blueprint": "Blueprint",
   "item.chrysalis.xp_seed": "Seed of Wisdom",
