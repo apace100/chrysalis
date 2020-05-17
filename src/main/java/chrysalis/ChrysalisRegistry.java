@@ -9,9 +9,12 @@ import chrysalis.block.item_grate.ItemGrateTileEntity;
 import chrysalis.block.potion_wart.PotionWartTileEntity;
 import chrysalis.block.xp_store.XPStoreTileEntity;
 import chrysalis.item.Items;
+import chrysalis.item.slingShot.ammo.slingShotExplosive.SlingShotExplosive;
+import chrysalis.item.slingShot.ammo.slingShotStone.SlingShotStone;
 import chrysalis.potion.Potions;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -26,6 +29,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid=Chrysalis.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ChrysalisRegistry {
+
   @SubscribeEvent
     public static void onBlockRegistry(final RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> reg = event.getRegistry();
@@ -40,7 +44,20 @@ public class ChrysalisRegistry {
 
     @SubscribeEvent
     public static void onEntityRegistry(final RegistryEvent.Register<EntityType<?>> event) {
-
+      IForgeRegistry<EntityType<?>> req = event.getRegistry();
+      req.register(
+          EntityType.Builder.<SlingShotStone>create(SlingShotStone::new, EntityClassification.MISC)
+              .setTrackingRange(128)
+              .setShouldReceiveVelocityUpdates(true)
+              .immuneToFire()
+              .build("sling_shot_stone").setRegistryName(Chrysalis.MODID, "sling_shot_stone"));
+      req.register(
+          EntityType.Builder.<SlingShotExplosive>create(SlingShotExplosive::new,
+              EntityClassification.MISC)
+              .setTrackingRange(128)
+              .setShouldReceiveVelocityUpdates(true)
+              .build("sling_shot_explosive")
+              .setRegistryName(Chrysalis.MODID, "sling_shot_explosive"));
     }
     
     @SubscribeEvent

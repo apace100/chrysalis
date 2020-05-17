@@ -2,6 +2,9 @@ package chrysalis.item;
 
 import chrysalis.Chrysalis;
 import chrysalis.block.Blocks;
+import chrysalis.item.slingShot.SlingShot;
+import chrysalis.item.slingShot.ammo.slingShotExplosive.SlingShotExplosiveItem;
+import chrysalis.item.slingShot.ammo.slingShotStone.SlingShotStoneItem;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,6 +36,21 @@ public class Items {
 	@ObjectHolder(Chrysalis.MODID + ":acid_bottle")
 	public static Item ACID_BOTTLE;
 
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot")
+	public static Item SLING_SHOT;
+
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot_stone")
+	public static Item SLING_SHOT_STONE;
+
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot_stone_item")
+	public static Item SLING_SHOT_STONE_ITEM;
+
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot_explosive")
+	public static Item SLING_SHOT_EXPLOSIVE;
+
+	@ObjectHolder(Chrysalis.MODID + ":sling_shot_explosive_item")
+	public static Item SLING_SHOT_EXPLOSIVE_ITEM;
+
 	private static void addBlockItem(IForgeRegistry<Item> registry, Block block, ItemGroup group) {
 		Item item = null;
 		if (group != null) {
@@ -62,10 +80,24 @@ public class Items {
 
 		addItem(registry, "xp_seed",
 				new XPSeedItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).food(XPSeedItem.FOOD)));
+
 		addItem(registry, "acid_bottle",
 				new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
+
 		addItem(registry, "chrysalis", new Item(new Item.Properties()));
+
 		addItem(registry, "blueprint", new Item(new Item.Properties().group(Chrysalis.ITEM_GROUP)));
+
+		addItem(registry, "sling_shot",
+				new SlingShot(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(1)));
+
+		addItem(registry, "sling_shot_stone_item",
+				new SlingShotStoneItem(new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
+
+		addItem(registry, "sling_shot_explosive_item",
+				new SlingShotExplosiveItem(
+						new Item.Properties().group(Chrysalis.ITEM_GROUP).maxStackSize(16)));
+
 		addItem(registry, "written_blueprint", new Item(new Item.Properties().maxStackSize(1)) {
 
 			@Override
@@ -74,7 +106,8 @@ public class Items {
 				CompoundNBT blueprintNBT = stack.getChildTag("Blueprint");
 				if (blueprintNBT != null) {
 					ItemStack output = ItemStack.read(blueprintNBT.getCompound("Output"));
-					StringTextComponent outputTooltip = new StringTextComponent(" (" + output.getCount() + "x ");
+					StringTextComponent outputTooltip = new StringTextComponent(
+							" (" + output.getCount() + "x ");
 					outputTooltip.appendSibling(output.getDisplayName()).appendText(")");
 					tooltip.get(0).appendSibling(outputTooltip);
 
