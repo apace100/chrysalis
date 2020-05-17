@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SLS",
+    "WWW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "item": "minecraft:slime_block"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "chrysalis:sling_shot",
+    "count": 1
+  }
+}
