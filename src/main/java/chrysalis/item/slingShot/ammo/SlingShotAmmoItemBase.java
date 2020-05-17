@@ -26,7 +26,7 @@ public abstract class SlingShotAmmoItemBase extends Item {
       SlingShotAmmoBase ammo = getShootableEntity(playerIn, worldIn);
 
       ammo.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, getPitchOffset(),
-          getVelocity(), getInaccuracy());
+          getVelocity(), getInaccuracy(), ShootingType.THROWN);
       playerIn.world.addEntity(ammo);
     }
     playerIn.addStat(Stats.ITEM_USED.get(this));

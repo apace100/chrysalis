@@ -52,9 +52,7 @@ public class Utils {
     Entity entity = null;
 
     AxisAlignedBB aabb = new AxisAlignedBB(from, to);
-    System.out.println("In AABB:");
     for (Entity e : world.getEntitiesWithinAABBExcludingEntity(excluding, aabb)) {
-      System.out.println("    " + e.toString());
       Optional<Vec3d> vec = e.getBoundingBox().rayTrace(from, to);
       if (vec.isPresent()) {
         double dist = from.squareDistanceTo(vec.get());

@@ -1,5 +1,6 @@
 package chrysalis.item.slingShot;
 
+import chrysalis.item.slingShot.ammo.ShootingType;
 import chrysalis.item.slingShot.ammo.SlingShotAmmoBase;
 import chrysalis.item.slingShot.ammo.SlingShotAmmoItemBase;
 import chrysalis.utils.Utils;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 
 public class SlingShot extends ShootableItem {
 
-  public static final int RANGE = 5;
+  public static final int RANGE = 3;
   public static final int Durability = 72000;
   public static final int MAX_DRAWING_DURATION = 30;
   public static final Predicate<ItemStack> SLING_SHOT_AMMO = itemStack -> {
@@ -33,7 +34,6 @@ public class SlingShot extends ShootableItem {
   }
 
   public static double getVelocity(Double charge) {
-    System.out.println("charge= " + charge);
 
     double f = charge / 20.0F;
     f = (f * f + f * 2.0F) / 3.0F;
@@ -80,7 +80,6 @@ public class SlingShot extends ShootableItem {
   }
 
   private void shootProjectile(World worldIn, PlayerEntity playerIn, double velocity) {
-    System.out.println("shoot Projectile");
     ItemStack ammoStack = findAmmo(playerIn);
     if (!worldIn.isRemote) {
       if (ammoStack != null && ammoStack != ItemStack.EMPTY) {
@@ -90,7 +89,7 @@ public class SlingShot extends ShootableItem {
         playShootSound(worldIn, playerIn);
         slingShotAmmo
             .shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F,
-                (float) (2F * (velocity / 3)), 0.0F);
+                (float) (2F * (velocity / 3)), 0.0F, ShootingType.SLING_SHOT);
         playerIn.world.addEntity(slingShotAmmo);
       }
 
@@ -109,7 +108,6 @@ public class SlingShot extends ShootableItem {
   }
 
   private void shootEntity(Entity entity, Vec3d direction, double velocity) {
-    System.out.println("shoot Entity");
     direction = direction.normalize();
     entity.addVelocity(direction.getX() * velocity, direction.getY() * velocity / 3,
         direction.getZ() * velocity);
@@ -117,7 +115,6 @@ public class SlingShot extends ShootableItem {
   }
 
   private void shootPlayer(PlayerEntity playerentity, double velocity) {
-    System.out.println("shoot Player");
     shootEntity(playerentity, playerentity.getLookVec().inverse(), velocity);
   }
 
@@ -141,7 +138,6 @@ public class SlingShot extends ShootableItem {
    */
   public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn,
       Hand handIn) {
-    System.out.println("activated SlingShot");
     ItemStack itemstack = playerIn.getHeldItem(handIn);
       playerIn.setActiveHand(handIn);
       return ActionResult.resultConsume(itemstack);

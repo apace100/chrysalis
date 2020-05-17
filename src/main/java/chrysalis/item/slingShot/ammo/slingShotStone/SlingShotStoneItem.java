@@ -30,12 +30,12 @@ public class SlingShotStoneItem extends SlingShotAmmoItemBase {
 
   @Override
   protected float getVelocity() {
-    return 1.5F;
+    return 1F;
   }
 
   @Override
   protected float getInaccuracy() {
-    return 0;
+    return 2;
   }
 }
 

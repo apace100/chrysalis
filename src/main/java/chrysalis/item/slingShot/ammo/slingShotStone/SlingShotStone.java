@@ -3,7 +3,9 @@ package chrysalis.item.slingShot.ammo.slingShotStone;
 import chrysalis.Chrysalis;
 import chrysalis.item.Items;
 import chrysalis.item.slingShot.ammo.SlingShotAmmoBase;
+import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeverBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,9 +21,10 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class SlingShotStone extends SlingShotAmmoBase {
 
-  private static final int DAMAGE = 1;
   @ObjectHolder(Chrysalis.MODID + ":sling_shot_stone")
   public static EntityType<SlingShotStone> TYPE;
+
+  private static final int DAMAGE_BASE = 1;
 
   public SlingShotStone(LivingEntity livingEntity, World world) {
     super(TYPE, livingEntity, world);
@@ -38,20 +41,22 @@ public class SlingShotStone extends SlingShotAmmoBase {
 
   @Override
   public void hitEntity(Entity entity) {
-    System.out.println("hitEntity");
+    float damage = (float) (DAMAGE_BASE * this.shootingType.getDamageMultiplier());
     entity
-        .attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) DAMAGE);
+        .attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
   }
 
   @Override
   public void hitBlock(BlockRayTraceResult result) {
-    System.out.println("hitBlock");
     if (!world.isRemote()) {
       BlockPos pos = result.getPos();
       BlockState state = world.getBlockState(pos);
-      PlayerEntity player = (PlayerEntity) this.getThrower();
-      Hand hand = Hand.MAIN_HAND;
-      state.onBlockActivated(world, player, hand, result);
+      if (state.getBlock() instanceof AbstractButtonBlock || state
+          .getBlock() instanceof LeverBlock) {
+        PlayerEntity player = (PlayerEntity) this.getThrower();
+        Hand hand = Hand.MAIN_HAND;
+        state.onBlockActivated(world, player, hand, result);
+      }
       state.onProjectileCollision(world, state, result, this);
     }
   }
