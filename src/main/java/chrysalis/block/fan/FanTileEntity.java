@@ -47,10 +47,13 @@ public class FanTileEntity extends TileEntity implements ITickableTileEntity {
 
   private void addMotion(Entity entity) {
     double factor = 0.35;
+    Direction direction;
     if (entity.isShiftKeyDown()) {
-      fanDirection = fanDirection.getOpposite();
+      direction = fanDirection.getOpposite();
+    } else {
+      direction = fanDirection;
     }
-    switch (fanDirection) {
+    switch (direction) {
       case DOWN:
         entity.setMotion(entity.getMotion().x, factor * -1, entity.getMotion().z);
         break;
